@@ -45,3 +45,26 @@ Run the Script
 Place your dataset1, dataset2, etc., files in this folder and run:
 
 python3 convert.py
+
+Updated the script to include a FIELDS_TO_KEEP list.
+
+If you leave the list empty, it will export everything (all columns).
+
+If you add names to the list (e.g., ['CreationDate', 'UserId', 'ClientIP']), it will filter the CSV to only those specific columns.
+
+To use the filter:
+
+Open convert.py in your text editor (you can use nano convert.py in WSL).
+
+Find the line: FIELDS_TO_KEEP = []
+
+Change it to include the specific headers you care about. For example:
+FIELDS_TO_KEEP = ['CreationTime', 'UserId', 'Operation', 'ClientIP', 'ObjectId']
+
+Save and run the script.
+
+Important Note on Column Names:
+The names are case-sensitive. Since Microsoft uses PascalCase, make sure you match the exact spelling (e.g., ClientIP instead of clientip).
+
+Why use existing_columns?
+I added a safety check in the code (existing_columns). This ensures that if you ask for a column like ClientIP, but it doesn't exist in one of your datasets, the script won't crash—it will just skip that column and move on.
